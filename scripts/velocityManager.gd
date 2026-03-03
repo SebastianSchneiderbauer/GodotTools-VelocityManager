@@ -5,6 +5,12 @@ extends RefCounted
 var velocities: Dictionary = {}
 var ignored = [] #contains velocity names that will be ignored
 
+func changeVelocityMultiplier(id : String, value : float):
+	if not velocities.has(id):
+		return
+	
+	velocities[id].multiplyer += value
+
 func addIgnored(input):
 	if typeof(input) == TYPE_STRING and not ignored.has(input):
 		ignored.append(input)
@@ -50,7 +56,7 @@ func killVelocitySlow(id: String, curve: Curve, duration: float = 1):
 	var vector := getVelocityVector(id)
 	
 	killVelocity(id)
-	addCurveVelocity(vector,curve,duration/10,id)# dont kill me, id also dont know wtf is happening
+	addCurveVelocity(vector,curve,duration,id)# dont kill me, id also dont know wtf is happening
 
 func updateVelocity(id: String, updated): # updated is either a Velocity or Vector
 	if not velocities.has(id):
@@ -89,13 +95,14 @@ func getTotalVelocity(delta: float) -> Vector3: #this takes deltatime for decrea
 	var to_remove: Array[String] = []
 	
 	for id in velocities:
+		var vel = velocities[id]
 		if not ignored.has(id):
-			var vel = velocities[id]
 			totalVelocity += vel._direction
-			vel.decrease(delta)
 			
 			if vel._direction.length() < vel._directionMin.length() or vel._direction.length() < 0.01:
 				to_remove.append(id)
+		
+		vel.decrease(delta)
 	
 	for id in to_remove:
 		killVelocity(id)
