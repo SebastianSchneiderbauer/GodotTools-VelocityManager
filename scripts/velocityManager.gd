@@ -5,12 +5,6 @@ extends RefCounted
 var velocities: Dictionary = {}
 var ignored = [] #contains velocity names that will be ignored
 
-func changeVelocityMultiplier(id : String, value : float):
-	if not velocities.has(id):
-		return
-	
-	velocities[id].multiplyer += value
-
 func addIgnored(input):
 	if typeof(input) == TYPE_STRING and not ignored.has(input):
 		ignored.append(input)
