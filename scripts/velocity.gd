@@ -4,11 +4,11 @@ extends RefCounted
 var _direction: Vector3
 var _oriDirection: Vector3
 var _directionMin: Vector3 # used as the lower limit when decreasing
-var _type: int #0 = constant, 1 following a curve
+var _type: int # 0 = constant, 1 following a curve
 var _decreaseCurve: Curve
 var _decreaseTime: float
 var _decreaseCounter: float = 0
-var _id: String #easier work for programmers instead of it being a number
+var _id: String # easier work for programmers instead of it being a number
 
 var lookupValue = 0
 

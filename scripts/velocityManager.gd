@@ -3,7 +3,7 @@ class_name VelocityManager
 extends RefCounted
 
 var velocities: Dictionary = {}
-var ignored = [] #contains velocity names that will be ignored
+var ignored = [] # contains velocity names that will be ignored
 
 func addIgnored(input):
 	if typeof(input) == TYPE_STRING and not ignored.has(input):
@@ -66,22 +66,21 @@ func updateVelocity(id: String, updated): # updated is either a Velocity or Vect
 		velocities[id]._decreaseCurve = updated
 		velocities[id]._decreaseCounter = 0
 
-#func _init(direction: Vector3, type: int, decrease, duration: float, id: String):
-func addConstantVelocity(velocity: Vector3, id: String, duration: float = INF) -> void: #yes the id is forced, just to make it a good habit
+func addConstantVelocity(velocity: Vector3, id: String, duration: float = INF) -> void: # yes the id is forced, just to make it a good habit
 	if velocity != Vector3.ZERO:
 		var newVelocity: Velocity = Velocity.new(velocity, 0, 0, duration, id)
 		velocities[id] = newVelocity
 	else:
 		velocities.erase(id)
 
-func addCurveVelocity(velocity: Vector3, fallOff:Curve, duration:float, id: String ) -> void: #yes the id is forced, just to make it a good habit
+func addCurveVelocity(velocity: Vector3, fallOff:Curve, duration:float, id: String ) -> void: # yes the id is forced, just to make it a good habit
 	if velocity != Vector3.ZERO:
 		var newVelocity: Velocity = Velocity.new(velocity, 1, fallOff, duration, id)
 		velocities[id] = newVelocity
 	else:
 		velocities.erase(id)
 
-func getTotalVelocity(delta: float) -> Vector3: #this takes deltatime for decrease to work
+func getTotalVelocity(delta: float) -> Vector3: # this takes deltatime for decrease to work
 	if velocities.size() == 0:
 		return Vector3.ZERO
 	
