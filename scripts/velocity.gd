@@ -15,7 +15,7 @@ var lookupValue = 0
 func _init(direction: Vector3, type: int, decrease, duration: float, id: String):
 	_direction = direction
 	_oriDirection = direction
-	_directionMin = _direction * 0.04 # 1% of the original is seen as the limit to save compute time
+	_directionMin = _direction * 0.04 # 4% of the original is seen as the limit to save compute time
 	_type = type
 	
 	_decreaseTime = duration
