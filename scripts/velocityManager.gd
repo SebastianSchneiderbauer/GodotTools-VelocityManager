@@ -43,6 +43,9 @@ func killVelocity(id: String):
 	
 	velocities.erase(id)
 
+func killAllVelocities():
+	velocities.clear()
+
 func killVelocitySlow(id: String, curve: Curve, duration: float = 1):
 	if not velocities.has(id):
 		return

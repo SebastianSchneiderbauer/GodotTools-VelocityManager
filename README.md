@@ -40,6 +40,7 @@ changeVelocityMultiplier(id: String, value: float) # usefull for modifying gravi
 
 # Remove
 killVelocity(id: String)
+killAllVelocities()
 killVelocitySlow(id: String, curve: Curve, duration: float = 1.0) # kills a Velocity over a given time Period, calling this multiple times for the same velocity causes the slowdown to glitch and take longer
 
 # Ignore
